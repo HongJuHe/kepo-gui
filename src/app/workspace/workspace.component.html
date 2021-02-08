@@ -1,0 +1,63 @@
+<div class="wrapper">
+  <mat-toolbar color="primary">
+    <mat-icon>apps</mat-icon>
+    <span class="toolbar-empty-slot"></span>
+    <span>AlphaGrid Modules</span>
+    <span class="toolbar-spacer"></span>
+    <button mat-raised-button color="primary" (click)="onReset()">
+      <mat-icon>replay</mat-icon>
+      Reset
+    </button>
+    <span class="toolbar-empty-slot"></span>
+    <button mat-raised-button (click)="onExecute()">
+      <mat-icon>play_arrow</mat-icon>
+      Execute
+    </button>
+  </mat-toolbar>
+
+  <div class="card-list-wrapper" cdkDropListGroup>
+    <div class="card-list">
+      <div class="card-list-content" cdkDropList
+           [cdkDropListData]="loadedModules"
+           (cdkDropListDropped)="onTaskDrop($event)">
+        <h2>Execution</h2>
+        <mat-card class="card" *ngFor="let m of loadedModules" cdkDrag
+                  [cdkDragDisabled]="m.fixed"
+                  [ngStyle]="{'background-color': m.background? m.background: 'white'}">
+          <mat-card-header>
+            <div mat-card-avatar class="card-icon"><mat-icon>{{m.icon? m.icon: 'account_tree'}}</mat-icon></div>
+            <mat-card-title>{{m.title}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content *ngIf="!m.fixed">
+            <div class="description">{{m.description}}</div>
+            <div class="detail"><mat-icon>code</mat-icon>{{m.index}}</div>
+            <div class="detail"><mat-icon>tune</mat-icon>{{m.arguments}}</div>
+            <div class="detail" *ngIf="m.completed"><mat-icon>done</mat-icon>{{m.result}}</div>
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+    </div>
+
+    <div class="card-list" *ngFor="let g of groups; let i=index">
+      <div class="card-list-content" cdkDropList
+           [cdkDropListData]="g.modules"
+           (cdkDropListDropped)="onTaskDrop($event)"
+           [cdkDropListEnterPredicate]="noReturnPredicate"
+           [ngStyle]="{'background-color': groupColors[i]}">
+        <h2>{{g.title}}</h2>
+        <mat-card class="card" *ngFor="let m of g.modules" cdkDrag [cdkDragDisabled]="m.fixed">
+          <mat-card-header>
+            <div mat-card-avatar class="card-icon"><mat-icon>account_tree</mat-icon></div>
+            <mat-card-title>{{m.title}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="description">{{m.description}}</div>
+            <div class="detail"><mat-icon>code</mat-icon>{{m.index}}</div>
+            <div class="detail"><mat-icon>tune</mat-icon>{{m.arguments}}</div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

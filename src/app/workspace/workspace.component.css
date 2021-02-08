@@ -1,0 +1,57 @@
+.wrapper {
+  overflow-x: scroll;
+}
+
+.mat-toolbar {
+  height: 70px;
+}
+
+.card-list-wrapper {
+  display: flex;
+  min-height: calc(100vh - 70px - 20px);
+}
+
+.card-list {
+  display: flex;
+  padding: 10px;
+}
+
+.card-list-content {
+  width: 100%;
+  min-width: 300px;
+  max-width: 300px;
+  padding: 10px;
+  background-color: gainsboro;
+}
+
+.card-list-content h2 {
+  margin-top: 5px;
+}
+
+.card {
+  margin: 2%;
+}
+
+.card-icon {
+  width: 20px;
+}
+
+.description {
+  padding-bottom: 10px;
+}
+
+.detail {
+}
+
+.detail .mat-icon {
+  vertical-align: middle;
+  padding-right: 5px;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.toolbar-empty-slot {
+  padding: 10px;
+}
