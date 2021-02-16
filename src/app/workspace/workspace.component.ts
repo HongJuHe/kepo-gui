@@ -67,17 +67,32 @@ export class WorkspaceComponent implements OnInit {
     let thiss;
     let ar =[];
 
+    async function sendGet(m)
+    {
+      if(m.result == undefined){
+        let check = setInterval(function() {
+          thiss.cs.getStatus().subscribe((r)=>{
+            
+            if(r.result != undefined){
+              m.result = r.result;
+              m.completed = true;
+              if(ar.length>0)
+              {
+                console.log(ar.length)
+                sendR(ar.shift());
+              }
+              clearInterval(check)
+            }
+          });
+        }, 30000);
+      }
+    }
+
     async function sendR(m)
     {
       thiss.cs.sendRequest({index: m.index, arguments: m.arguments}).subscribe((r) => {
         console.log(r.result);
-        m.result = r.result;
-        m.completed = true;
-        if(ar.length>0)
-        {
-          console.log(ar.length)
-          sendR(ar.shift());
-        }
+        sendGet(m);
       });
     }
 

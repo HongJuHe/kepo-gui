@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {IConfig, IModuleGroup, IScript, IScriptResult} from '../models/module';
-import {catchError, map, tap} from 'rxjs/operators';
+import {catchError, map, tap, retry} from 'rxjs/operators';
 
 const CONFIG_JSON = 'assets/config.json';
 
@@ -13,9 +13,7 @@ export class ConfigService {
 
   constructor(private http: HttpClient) {
     this.httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
     };
   }
   requestURL: string;
@@ -39,7 +37,16 @@ export class ConfigService {
       );
   }
 
+  getStatus(): Observable<IScriptResult> {
+    return this.http.get<IScriptResult>(this.requestURL, {})
+    .pipe(
+      catchError(ConfigService.handleError)
+    );
+  }
+
   sendRequest(script: IScript): Observable<IScriptResult> {
+    console.log(this.httpOptions);
+
     return this.http.post<IScriptResult>(this.requestURL, script, this.httpOptions)
       .pipe(
         catchError(ConfigService.handleError)
