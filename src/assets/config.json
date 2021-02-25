@@ -1,15 +1,16 @@
 {
-  "url": "http://localhost:3000/cmd",
+  "url":"http://localhost:3000/cmd",
   "groups": [
     {
       "title": "명지대학교",
       "modules": [
         {
-          "title": "상태감시진단",
-          "description": "샘플 모듈 0번에 관한 설명",
+          "title": "1번 모듈",
+          "description": "상태감시진단",
           "index": "MJU_1",
           "arguments": "arg1 arg2",
-          "fixed": false
+          "fixed": false,
+          "background": "#4c78a8"
         }
       ]
     },
@@ -17,32 +18,36 @@
       "title": "인하대학교",
       "modules": [
         {
-          "title": "PV 발전량 예측",
-          "description": "샘플 모듈 0번에 관한 설명",
+          "title": "2번 모듈",
+          "description": "PV 발전량 예측",
           "index": "INHA_2",
           "arguments": "arg1",
-          "fixed": false
+          "fixed": false,
+          "background": "#9ecae9"
         },
         {
-          "title": "P2P 입찰",
-          "description": "샘플 모듈 1번에 관한 설명",
+          "title": "3번 모듈",
+          "description": "P2P 입찰",
           "index": "INHA_3",
           "arguments": "arg1 arg2 arg3",
-          "fixed": false
+          "fixed": false,
+          "background": "#9ecae9"
         },
         {
-          "title": "P2P 매칭",
-          "description": "샘플 모듈 2번에 관한 설명",
+          "title": "4번 모듈",
+          "description": "P2P 매칭",
           "index": "INHA_4",
           "arguments": "arg1 arg2",
-          "fixed": false
+          "fixed": false,
+          "background": "#9ecae9"
         },
         {
-          "title": "디지털 트윈",
-          "description": "샘플 모듈 3번에 관한 설명",
+          "title": "5번 모듈",
+          "description": "디지털 트윈",
           "index": "INHA_5",
           "arguments": "arg1 arg2",
-          "fixed": false
+          "fixed": false,
+          "background": "#9ecae9"
         }
       ]
     },
@@ -50,32 +55,36 @@
       "title": "포항공과대학교",
       "modules": [
         {
-          "title": "PV 발전량 예측",
-          "description": "샘플 모듈 0번에 관한 설명",
+          "title": "6번 모듈",
+          "description": "PV 발전량 예측",
           "index": "POSTECH_6",
           "arguments": "arg1",
-          "fixed": false
+          "fixed": false,
+          "background": "#f58518"
         },
         {
-          "title": "발전고장 ED",
-          "description": "샘플 모듈 1번에 관한 설명",
+          "title": "7번 모듈",
+          "description": "발전고장 ED",
           "index": "POSTECH_7",
           "arguments": "arg1",
-          "fixed": false
+          "fixed": false,
+          "background": "#f58518"
         },
         {
-          "title": "분산 상태 추정",
-          "description": "샘플 모듈 2번에 관한 설명",
+          "title": "8번 모듈",
+          "description": "분산 상태 추정",
           "index": "POSTECH_8",
           "arguments": "RT_Pnet",
-          "fixed": false
+          "fixed": false,
+          "background": "#f58518"
         },
         {
-          "title": "거래 보안",
-          "description": "샘플 모듈 3번에 관한 설명",
+          "title": "9번 모듈",
+          "description": "거래 보안",
           "index": "POSTECH_9",
           "arguments": "arg1 arg2",
-          "fixed": false
+          "fixed": false,
+          "background": "#f58518"
         }
       ]
     },
@@ -83,25 +92,28 @@
       "title": "한국산업기술대학교",
       "modules": [
         {
-          "title": "SMP 예측",
-          "description": "샘플 모듈 0번에 관한 설명",
+          "title": "10번 모듈",
+          "description": "SMP 예측",
           "index": "KPU_10",
           "arguments": "pred_PV",
-          "fixed": false
+          "fixed": false,
+          "background": "#ffbf79"
         },
         {
-          "title": "전일 시장",
-          "description": "샘플 모듈 1번에 관한 설명",
+          "title": "11번 모듈",
+          "description": "전일 시장",
           "index": "KPU_11",
           "arguments": "smp",
-          "fixed": false
+          "fixed": false,
+          "background": "#ffbf79"
         },
         {
-          "title": "실시간 시장",
-          "description": "샘플 모듈 2번에 관한 설명",
+          "title": "12번 모듈",
+          "description": "실시간 시장",
           "index": "KPU_12",
           "arguments": "arg1 arg2",
-          "fixed": false
+          "fixed": false,
+          "background": "#ffbf79"
         }
       ]
     }

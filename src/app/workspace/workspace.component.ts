@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ConfigService } from '../services/config.service';
 import { IModule, IModuleGroup } from '../models/module';
+
 
 @Component({
   selector: 'app-workspace',
@@ -66,32 +67,90 @@ export class WorkspaceComponent implements OnInit {
   onExecute(): void {
     let thiss;
     let ar =[];
+    let check_color = false;
+    let background_color = ""
+    let ch_interval;
+    //let btn = (<HTMLInputElement>document.getElementById("execute_btn"));
+    //btn.disabled = true;
+
+
 
     async function sendGet(m)
     {
       if(m.result == undefined){
+        ChangeBackgroudColor(m)
         let check = setInterval(function() {
           thiss.cs.getStatus().subscribe((r)=>{
+
+            console.log("GetPush");
+            console.log("result : ");
+            console.log(r.result);
             
             if(r.result != undefined){
               m.result = r.result;
               m.completed = true;
+              if(m.background!="white")
+              {
+                m.background = "white"
+              }
+              check_color = false;
+              clearInterval(ch_interval);
+
+              if(ar.length == 0){
+                console.log("zip start")
+                sendZ();
+              }
               if(ar.length>0)
               {
                 console.log(ar.length)
                 sendR(ar.shift());
               }
+                /*else
+              {
+                btn.disabled = false;
+              }*/
+
               clearInterval(check)
             }
           });
         }, 30000);
+        
       }
+    }
+
+    function ChangeBackgroudColor(m)
+    {
+      console.log(m.index)
+
+      ch_interval = setInterval(function() {
+        if (check_color) 
+        {
+          if(m.background=="white")
+          {
+            m.background = background_color;
+          }
+          else
+          {
+            m.background ="white";
+          }
+        }
+      }, 1000);
+    }
+
+
+    async function sendZ()
+    {
+      thiss.cs.sendRequest({index: "fileZip", arguments: null}).subscribe((r) => {
+        console.log("exit")
+      });
     }
 
     async function sendR(m)
     {
       thiss.cs.sendRequest({index: m.index, arguments: m.arguments}).subscribe((r) => {
         console.log(r.result);
+        check_color = true;
+        background_color = m.background;
         sendGet(m);
       });
     }
@@ -101,8 +160,15 @@ export class WorkspaceComponent implements OnInit {
       //await sendR(m);
       ar.push(m);
     });
+
+    if(ar.length >0){
+
+      sendR(ar.shift());
+
+    }
     
-    sendR(ar.shift());
 
   }
+
+  
 }
